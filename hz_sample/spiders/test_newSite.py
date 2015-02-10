@@ -9,8 +9,32 @@ class DmozSpider(BaseSpider):
 
     def parse(self, response):
         hxs = HtmlXPathSelector(response)
-        titles = hxs.select("//p")
+        ###root = hxs.select("//p")
 
-        for titles in titles:
-	    tester = titles.xpath('id('div_a1')/x:div[3]').extract() 
-            print tester
+        tester = hxs.xpath('//*[@id="div_a1"]/div[2]').extract()
+        retester = hxs.xpath('//*[@id="div_a1"]/div[3]').extract()
+        ###retester = root.xpath('//*[@id="div_a1"]/div[2]').extract()
+        ###tester = root.xpath('//*[@id="div_a1"]/div[3]').extract() 
+        print tester
+        print("BREAK")
+        print retester
+
+##ORIGINAL VIDEO DEMO
+#    def parse(self, response):
+#        hxs = HtmlXPathSelector(response)
+#        titles = hxs.select("//p")
+
+#        for titles in titles:
+#	     tester = titles.xpath('//*[@id="div_a1"]/div[3][1]').extract()
+#	     jester = titles.xpath('//*[@id="div_a1"]/div[2]').extract() 
+#            print tester
+
+##ALTERNATE STACK SOLUTION
+# class Spider(BaseSpider):
+#     name = "hzIII"
+#     allowed_domains = ["tool.httpcn.com"]
+#     start_urls = ["http://tool.httpcn.com/Html/Zi/28/PWMETBAZTBTBBDTB.shtml"]
+#     def parse(self, response):
+#         print  response.xpath('//*[@id="div_a1"]/div[2]').extract()
+#         print("BREAK")
+#         print  response.xpath('//*[@id="div_a1"]/div[3]').extract() 
